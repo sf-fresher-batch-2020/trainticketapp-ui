@@ -20,7 +20,6 @@
         body {
             text-align: center;
             text-decoration: none;
-            background-image: url(https://www.google.com/url?sa=i&url=https%3A%2F%2Fenglish.jagran.com%2Findia%2Findian-railways-to-resume-services-partially-from-may-12-online-booking-to-begin-from-monday-10011672&psig=AOvVaw1990oQ_VtnSPn22qixWlL4&ust=1604336869799000&source=images&cd=vfe&ved=0CAIQjRxqFwoTCJDUqNzq4ewCFQAAAAAdAAAAABAD);
         }
 
         label {
@@ -63,6 +62,11 @@
         <script>
             $("#header").load("components/header.html");
             function searchtrains() {
+                let Trains = [{ trainnumber: 1239, trainname: "Rajdhani", departurestation: "delhi", arrivalstation: "chennai" },
+                              { trainnumber: 2784, trainname: "Shatabdi", departurestation: "madurai", arrivalstation: "delhi" },
+                              { trainnumber: 8763, trainname: "chennai-madurai Express", departurestation: "chennai", arrivalstation: "madurai" },
+                              { trainnumber: 5407, trainname: "chennai-mail", departurestation: "pune", arrivalstation: "chennai" },
+                              { trainnumber: 3271, trainname: "vaigai express", departurestation: "trichy", arrivalstation: "chennai" }];
                 event.preventDefault();
                 //getting form datas
                 var source = document.getElementById("src-city").value;
@@ -74,9 +78,25 @@
                 //local storage function
                 var searchserviceObj = new SearchService();
                 let result = searchserviceObj.search(userObj);
+               //filtering
+                let Queriedtrains = Trains.filter(obj => obj.departurestation == source && obj.arrivalstation == destination)
+                console.log(Queriedtrains);
+                let content = "";
+                for (let trainObj of Queriedtrains) {
 
+                    let viewBtn = '<button> view details </button>'
+                    content += `<tr>
+                                   <td>${trainObj.trainnumber}</td>
+                                   <td>${trainObj.trainname}</td>
+                                   <td>${trainObj.departurestation}</td>
+                                   <td>${trainObj.arrivalstation}</td>
+                                   <td>${viewBtn}</td>
+                                   </tr>`;
+                }
+                document.querySelector("#Trainslist").innerHTML = content;
             } 
         </script>
 </body>
 
 </html>
+        
