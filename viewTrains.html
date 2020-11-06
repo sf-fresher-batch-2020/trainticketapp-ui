@@ -31,7 +31,7 @@
                 <table class="table table-bordered">
                     <thead>
                         <tr>
-                            <th>s.no</th>
+                            <th>Train number</th>
                             <th>Train name</th>
                             <th>Departure station</th>
                             <th>Arrival station</th>
@@ -40,39 +40,24 @@
                     </thead>
 
                     <tbody id="Trainslist">
-                        <!-- <tr>
-                        <td>1</td>
-                        <td>Rajdhani Express</td>
-                        <td>new delhi</td>
-                        <td>chennai</td>
-                    </tr>
-                    <tr>
-                        <td>2</td>
-                        <td>Shatabdi Express</td>
-                        <td>madurai</td>
-                        <td>delhi</td>
-                    </tr>  
-                    <tr>
-                        <td>3</td>
-                        <td>chennai-madurai Express</td>
-                        <td>chennai</td>
-                        <td>madurai</td>
-                    </tr>  -->
+
                     </tbody>
                 </table>
             </div>
             <script>
                 $("#header").load("components/header.html");
                 function Trainlist() {
-                    let Trains = [{ sno: 1, trainname: "Rajdhani", departurestation: "newdelhi", arrivalstation: "chennai" },
-                                  { sno: 2, trainname: "Shatabdi", departurestation: "madurai", arrivalstation: "delhi" },
-                                  { sno: 3, trainname: "chennai-madurai Express", departurestation: "chennai", arrivalstation: "madurai" }];
+                    let Trains = [{ trainnumber: 1239, trainname: "Rajdhani", departurestation: "newdelhi", arrivalstation: "chennai" },
+                                  { trainnumber: 2784, trainname: "Shatabdi", departurestation: "madurai", arrivalstation: "delhi" },
+                                  { trainnumber: 8763, trainname: "chennai-madurai Express", departurestation: "chennai", arrivalstation: "madurai" },
+                                  { trainnumber: 5407, trainname: "chennai-mail", departurestation: "pune", arrivalstation: "chennai" },
+                                  { trainnumber: 3271, trainname: "vaigai express", departurestation: "trichy", arrivalstation: "chennai" }];
                     let content = "";
                     for (let trainObj of Trains) {
 
                         let viewBtn = '<button> view details </button>'
                         content += `<tr>
-                                   <td>${trainObj.sno}</td>
+                                   <td>${trainObj.trainnumber}</td>
                                    <td>${trainObj.trainname}</td>
                                    <td>${trainObj.departurestation}</td>
                                    <td>${trainObj.arrivalstation}</td>
