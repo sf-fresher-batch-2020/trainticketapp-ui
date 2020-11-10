@@ -13,6 +13,9 @@
     <script src="https://code.jquery.com/jquery-3.5.1.min.js" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/js/bootstrap.bundle.min.js"
         crossorigin="anonymous"></script>
+    <!--toastr.js-->
+    <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.css">
+    <script src="//cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
     <!--random number generation-->
     <script src="https://chancejs.com/chance.min.js"></script>
     <script src="services/bookservices.js"></script>
@@ -52,7 +55,7 @@
                     <label>Number of passengers</label><input type="number" name="num" id="num"
                         placeholder="Enter no of passengers" min="0"></br></br>
                     <button class="btn btn-primary">Book now</button>
-                        
+
                 </form>
             </div>
         </div>
@@ -60,13 +63,13 @@
     </main>
     <script>
         $("#header").load("components/header.html");
-        function getTrain(){
-          var trainserviceobj = new TrainService();
-          let trainName =  trainserviceobj.get('trainName');
-          let trainNumber =  trainserviceobj.get('trainNumber');
-          console.log(trainName, trainNumber);
-          document.getElementById('trainNumber').innerText = `Train Name : ${trainName}`;
-          document.getElementById('trainName').innerText = `Train Number: ${trainNumber}` ;
+        function getTrain() {
+            var trainserviceobj = new TrainService();
+            let trainName = trainserviceobj.get('trainName');
+            let trainNumber = trainserviceobj.get('trainNumber');
+            console.log(trainName, trainNumber);
+            document.getElementById('trainNumber').innerText = `Train Name : ${trainName}`;
+            document.getElementById('trainName').innerText = `Train Number: ${trainNumber}`;
         }
         getTrain();
         function book() {
@@ -87,7 +90,7 @@
             //local storage
             var bookserviceObj = new BookService();
             let result = bookserviceObj.books(booking);
-            
+            toastr.success("booked your ticket.Happy Journey");
         }
     </script>
 </body>
