@@ -13,7 +13,7 @@
     <script src="https://code.jquery.com/jquery-3.5.1.min.js" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/js/bootstrap.bundle.min.js"
         crossorigin="anonymous"></script>
-   
+
     <!--toastr-->
     <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.css">
     <script src="//cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
@@ -22,7 +22,7 @@
     <style>
         h2 {
             text-align: center;
-            color: cornflowerblue;
+            color:plum;
         }
 
         body {
@@ -44,27 +44,33 @@
         <!-- Load Header content-->
     </header>
     <main class="container-fluid">
-        <div id="page-content">
+        <!--<div class="card text-center" style="width: 600px; margin-left:350px; margin-top:40px;"> -->
+            <div class="container">
 
-            <h2>Registration form</h2>
-            <p> Register here to continue</p>
-            <form onsubmit="register()">
-                <form action="" method="POST">
-                    <label>Name</label><input type="text" name="username" placeholder="Enter your name" id="name"
-                        autofocus></br>
-                    <label>Email ID</label><input type="email" name="email id" placeholder="Enter your mail id"
-                        id="email"></br>
-                    <label>Password</label><input type="password" name="pass" id="password" required></br>
-                    <label>DOB</label><input type="date" value="" id="dob"></br>
-                    <label>Gender</label><input type="radio" name="gender" value="m" id="m">male
-                    <input type="radio" name="gender" value="f" id="f">female</br>
-                    <label for="role">choose your role</label>
-                    <select id="role" name="role">
-                        <option value="user">USER</option>
-                        <option value="admin">ADMIN</option>
-                    </select></br></br>
-                    <button class="btn btn-primary">Register</button>
-                </form>
+                <h2>Registration form</h2>
+                <p> Register here to continue</p>
+                <form onsubmit="register()">
+                    <form action="" method="POST">
+                        <label>Name</label><input type="text" name="username" placeholder="Enter your name" id="name"
+                            autofocus></br>
+                        <label>Email ID</label><input type="email" name="email id" placeholder="Enter your mail id"
+                            id="email"></br>
+                        <label>Password</label><input type="password" name="pass" id="password" required></br>
+                        <label>DOB</label><input type="date" value="" id="dob"></br>
+                        <label>Gender</label><input type="radio" name="gender" value="m" id="m">male
+                        <input type="radio" name="gender" value="f" id="f">female</br>
+                        <label for="role">choose your role</label>
+                        <select id="role" name="role">
+                            <option value="user">USER</option>
+                            <option value="admin">ADMIN</option>
+                        </select></br></br>
+                        <button class="btn btn-primary">Register</button></br></br>
+                      </form>
+                        <p>Already have an account?click here to <a href="login.html">Login</a></p>
+                      <!--  <button>click here <a class="login" href=login.html ></a></button> -->
+                    
+            </div>
+       <!-- </div> -->
     </main>
     <script>
         $("#header").load("components/header.html");
@@ -91,7 +97,7 @@
                 //storing it in a single obj  
                 var userObj = { "name": name, "email": email, "password": password, "dob": DOB, "gender": gender, "role": role };
                 console.log(userObj);
-               
+
                 //local storage function
                 var registerserviceObj = new RegisterService();
                 let result = registerserviceObj.register(userObj);

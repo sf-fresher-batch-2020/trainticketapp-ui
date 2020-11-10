@@ -13,7 +13,8 @@
     <script src="https://code.jquery.com/jquery-3.5.1.min.js" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/js/bootstrap.bundle.min.js"
         crossorigin="anonymous"></script>
-
+    <script src="services/trainservice.js"></script>
+    <script src="services/bookservices.js"></script>
     </link>
 </head>
 
@@ -33,8 +34,9 @@
                         <tr>
                             <th>Train number</th>
                             <th>Train name</th>
-                            <th>Departure station</th>
-                            <th>Arrival station</th>
+                            <th>Departure </th>
+                            <th>Arrival</th>
+                            <th>Duration</th>
                             <th>Action</th>
                         </tr>
                     </thead>
@@ -46,29 +48,76 @@
             </div>
             <script>
                 $("#header").load("components/header.html");
-                function Trainlist() {
-                    let Trains = [{ trainnumber: 1239, trainname: "Rajdhani", departurestation: "newdelhi", arrivalstation: "chennai" },
-                                  { trainnumber: 2784, trainname: "Shatabdi", departurestation: "madurai", arrivalstation: "delhi" },
-                                  { trainnumber: 8763, trainname: "chennai-madurai Express", departurestation: "chennai", arrivalstation: "madurai" },
-                                  { trainnumber: 5407, trainname: "chennai-mail", departurestation: "pune", arrivalstation: "chennai" },
-                                  { trainnumber: 3271, trainname: "vaigai express", departurestation: "trichy", arrivalstation: "chennai" }];
+                function trainlist() {
+                    let trains = [{ trainnumber: 1239, trainname: "Rajdhani", departurestation: "delhi", arrivalstation: "chennai", duration: "28hrs" },
+                    { trainnumber: 2784, trainname: "Shatabdi", departurestation: "madurai", arrivalstation: "delhi", duration: "41hrs" },
+                    { trainnumber: 8763, trainname: "chennai-madurai Express", departurestation: "chennai", arrivalstation: "madurai", duration: "7hrs 40min" },
+                    { trainnumber: 5407, trainname: "chennai-mail", departurestation: "pune", arrivalstation: "chennai", duration: "18hrs" },
+                    { trainnumber: 3271, trainname: "vaigai express", departurestation: "trichy", arrivalstation: "chennai", duration: "5hrs 30mins" }];
+                    /* var trainserviceObj = new TrainService();
+                     let result = trainserviceObj.details(content); */
                     let content = "";
-                    for (let trainObj of Trains) {
+                    let indexLoop;
+                    trains.forEach((trainObj, index) => {
 
-                        let viewBtn = '<button> view details </button>'
-                        content += `<tr>
-                                   <td>${trainObj.trainnumber}</td>
-                                   <td>${trainObj.trainname}</td>
+                        if (index == 0) {
+                            indexLoop = index;
+                        }
+
+                        for (i = 0; i <= index; i++) {
+                            console.log(index);
+                            if (i == index) {
+                                indexLoop = i + i;
+                            }
+                        }
+
+
+
+                        console.log(indexLoop);
+                        console.log(trainObj);
+                        content += `            <form id="form1">
+                                    <tr>
+                                   <td id="value${indexLoop}">${trainObj.trainnumber}</td>
+                                   <td id="value${indexLoop + 1}">${trainObj.trainname}</td>
                                    <td>${trainObj.departurestation}</td>
                                    <td>${trainObj.arrivalstation}</td>
-                                   <td>${viewBtn}</td>
-                                   </tr>`;
-                    }
+                                   <td>${trainObj.duration}</td>
+                                   <td><button type="submit" id="button${index + 1}"> Book </button></td>
+                                   </tr>
+                                   </form>`;
+
+                        document.querySelector("#Trainslist").innerHTML = content;
+
+
+                    });
                     console.log(content);
-                    document.querySelector("#Trainslist").innerHTML = content;
+
+
+                    trains.forEach((trainObj, index) => {
+                        //console.log(`button${index+1}`)
+                        document.getElementById(`button${index + 1}`).onclick = function bookTrain() {
+
+                            for (i = 0; i <= index; i++) {
+                                if (i == index) {
+                                    indexLoop = i + i;
+
+                                }
+                            }
+                            if (index == 0) {
+                                indexLoop = index + index;
+                            }
+                            trainNumber = document.getElementById(`value${indexLoop}`).innerText;
+                            trainName = document.getElementById(`value${indexLoop + 1}`).innerText;
+                            var trainserviceObj = new TrainService();
+                            trainserviceObj.pass(trainName, trainNumber);
+                            window.location.href = "bookTickets.html";
+                        };
+                    })
 
                 }
-                Trainlist();
+                trainlist();
+
+
             </script>
 </body>
 

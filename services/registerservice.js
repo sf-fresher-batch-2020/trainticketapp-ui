@@ -1,6 +1,6 @@
 class RegisterService {
     register = function (userObj) {
-        console.log(userObj)
+        console.log(userObj) 
         var usersTemp = JSON.parse(localStorage.getItem("USERS"));
         var users = usersTemp ? usersTemp : [];
         //validating emailaddress if already exists

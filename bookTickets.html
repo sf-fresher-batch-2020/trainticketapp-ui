@@ -13,6 +13,20 @@
     <script src="https://code.jquery.com/jquery-3.5.1.min.js" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/js/bootstrap.bundle.min.js"
         crossorigin="anonymous"></script>
+    <!--random number generation-->
+    <script src="https://chancejs.com/chance.min.js"></script>
+    <script src="services/bookservices.js"></script>
+    <script src="services/trainservice.js"></script>
+    <style>
+        body {
+            text-align: center;
+        }
+
+        label {
+            width: 120px;
+            display: inline-block;
+        }
+    </style>
 </head>
 
 <body>
@@ -20,12 +34,61 @@
         <!-- Load Header content-->
     </header>
     <main class="container-fluid">
-        <div id="page-content">
-            <h3>Book tickets</h3>
-            
+        <div class="card text-center" style="width: 400px; margin-left:500px; margin-top:40px;">
+            <div class="container">
+                <h3>Book tickets</h3>
+                <h4 id="trainNumber"></h4>
+                <h4 id="trainName"></h4>
+                <form onsubmit="book()">
+                    <label>From</label> <input type="text" name="from" id="from"
+                        placeholder="Enter from station"></br></br>
+                    <label>To</label><input type="text" name="to" id="to" placeholder="Enter to station"></br></br>
+                    <label>journey date</label> <input type="date" value="" id="date" required></br></br>
+                    <label>choose your class</label> <select id="class" name="class">
+                        <option value="sleeper">sleeper class</option>
+                        <option value="AC">AC-chair car</option>
+                        <option value="second">Second sitting</option>
+                    </select></br></br>
+                    <label>Number of passengers</label><input type="number" name="num" id="num"
+                        placeholder="Enter no of passengers" min="0"></br></br>
+                    <button class="btn btn-primary">Book now</button>
+                        
+                </form>
+            </div>
+        </div>
+
     </main>
     <script>
         $("#header").load("components/header.html");
+        function getTrain(){
+          var trainserviceobj = new TrainService();
+          let trainName =  trainserviceobj.get('trainName');
+          let trainNumber =  trainserviceobj.get('trainNumber');
+          console.log(trainName, trainNumber);
+          document.getElementById('trainNumber').innerText = `Train Name : ${trainName}`;
+          document.getElementById('trainName').innerText = `Train Number: ${trainNumber}` ;
+        }
+        getTrain();
+        function book() {
+            event.preventDefault();
+            //getting form values
+            let ticketId = chance.integer({ min: 1, max: 10000 });
+            var from = document.getElementById("from").value;
+            var to = document.getElementById("to").value;
+            var date = document.getElementById("date").value;
+            var journeyclass = document.getElementById("class").value;
+            var passengers = document.getElementById("num").value;
+            var currentUser = JSON.parse(localStorage.getItem("LOGGED_IN_USER"));
+            console.log(currentUser);
+            let currentUserName = currentUser.name;
+            //storing it in single object
+            var booking = { "name": currentUserName, "ticketId": ticketId, "from": from, "to": to, "date": date, "class": journeyclass, "num": passengers };
+            console.log(booking);
+            //local storage
+            var bookserviceObj = new BookService();
+            let result = bookserviceObj.books(booking);
+            
+        }
     </script>
 </body>
 
