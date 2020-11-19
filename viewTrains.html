@@ -15,6 +15,7 @@
         crossorigin="anonymous"></script>
     <script src="services/trainservice.js"></script>
     <script src="services/bookservices.js"></script>
+    <script src="services/trainlistservice.js"></script>
     </link>
 </head>
 
@@ -49,13 +50,9 @@
             <script>
                 $("#header").load("components/header.html");
                 function trainlist() {
-                    let trains = [{ trainnumber: 1239, trainname: "Rajdhani", departurestation: "delhi", arrivalstation: "chennai", duration: "28hrs" },
-                    { trainnumber: 2784, trainname: "Shatabdi", departurestation: "madurai", arrivalstation: "delhi", duration: "41hrs" },
-                    { trainnumber: 8763, trainname: "chennai-madurai Express", departurestation: "chennai", arrivalstation: "madurai", duration: "7hrs 40min" },
-                    { trainnumber: 5407, trainname: "chennai-mail", departurestation: "pune", arrivalstation: "chennai", duration: "18hrs" },
-                    { trainnumber: 3271, trainname: "vaigai express", departurestation: "trichy", arrivalstation: "chennai", duration: "5hrs 30mins" }];
-                    /* var trainserviceObj = new TrainService();
-                     let result = trainserviceObj.details(content); */
+
+                    var trainlistserviceObj = new TrainListService();
+                    let trains = trainlistserviceObj.retrieve();
                     let content = "";
                     let indexLoop;
                     trains.forEach((trainObj, index) => {
