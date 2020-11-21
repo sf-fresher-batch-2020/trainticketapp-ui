@@ -12,7 +12,7 @@ class CancelService{
     var removeIndex = ticketBooking.indexOf(removeObj);
     let result;
     if(removeIndex > -1){
-      ticketBooking.splice(removeIndex, 1);
+      ticketBooking[removeIndex].status ="cancelled";
       result = "success"
     }
     else{

@@ -1,3 +1,4 @@
+<script src="../services/checkLoginService.js"></script>
 <nav class="navbar navbar-expand-sm navbar-dark bg-primary">
     <a class="navbar-brand" href="#">
         <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcQaMMA9GfcnxbgLv_eCZh3q3hEuQizYka1_zw&usqp=CAU"
@@ -16,40 +17,38 @@
                 <a class="nav-link dropdown-toggle" href="#" id="dropdownId" data-toggle="dropdown" aria-haspopup="true"
                     aria-expanded="false">Trains</a>
                 <div class="dropdown-menu" aria-labelledby="dropdownId">
+                    <a class="dropdown-item" href="addTrains.html" id="addtrains" data-loggedin=true> AddTrains</a>
+                    <a class="dropdown-item" href="deleteTrains.html" id="deletetrains" data-loggedin=true>
+                        DeleteTrains</a>
                     <a class="dropdown-item" href="searchTrains.html" data-loggedin=true> search Trains</a>
                     <a class="dropdown-item" href="viewTrains.html" data-loggedin=true>view Trains </a>
+                    
                 </div>
             </li>
             <ul class="navbar-nav ml-auto mt-2 mt-lg-0">
                 <li class="nav-item dropdown" data-loggedin="true">
-                    <a class="nav-link dropdown-toggle" href="#" id="dropdownId" data-toggle="dropdown" aria-haspopup="true"
-                        aria-expanded="false">Tickets</a>
+                    <a class="nav-link dropdown-toggle" href="#" id="dropdownId" data-toggle="dropdown"
+                        aria-haspopup="true" aria-expanded="false">Tickets</a>
                     <div class="dropdown-menu" aria-labelledby="dropdownId">
-                        <a class="dropdown-item" href="bookTickets.html" data-loggedin=true> book ticket</a>
+
                         <a class="dropdown-item" href="viewTickets.html" data-loggedin=true>view tickets </a>
                         <a class="dropdown-item" href="cancelTickets.html" data-loggedin=true>cancel tickets </a>
                     </div>
                 </li>
-            <!-- <ul class="navbar-nav ml-auto mt-2 mt-lg-0">
-            <li class="nav-item ">
-                <a class="nav-link" href="searchTrains.html" data-loggedin=true> SearchTrains</a>
-            </li>
-            <li class="nav-item ">
-                <a class="nav-link" href="viewTrains.html" data-loggedin=true> viewTrains</a>
-            </li> -->
-            <li class="nav-item ">
-                <a class="nav-link" href="login.html" data-loggedin=false>Login</a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link" href="register.html" data-loggedin=false>Register</a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link" href="" data-loggedin=true style="display: block;">Welcome </a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link" href="" onclick="logout()" data-loggedin=true>(Logout) </a>
-            </li>
-        </ul>
+                <ul class="navbar-nav ml-auto mt-2 mt-lg-0">
+                    <li class="nav-item ">
+                        <a class="nav-link" href="login.html" data-loggedin=false>Login</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="register.html" data-loggedin=false>Register</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="" data-loggedin=true style="display: block;">Welcome </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="" onclick="logout()" data-loggedin=true>(Logout) </a>
+                    </li>
+                </ul>
 
     </div>
 </nav>
@@ -72,7 +71,12 @@
         document.querySelectorAll(".nav-link[data-loggedin=false] , .nav-item[data-loggedin=false] , .dropdown-item[data-loggedin=false]").forEach(obj => obj.style.display = "block");
 
     }
-
+    let checkLoginServiceObj = new CheckLoginService();
+    var isAdmin = checkLoginServiceObj.check();
+    if (isAdmin == false) {
+        document.getElementById("addtrains").style.display = "none";
+        document.getElementById("deletetrains").style.display = "none";
+    }
     function logout() {
         // localStorage.clear();
         localStorage.removeItem("LOGGED_IN_USER");

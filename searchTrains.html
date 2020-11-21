@@ -61,7 +61,7 @@
                 <option value="pune">Pune</option>
             </select></br>
             <label>Journey date</label><input type="date" id="date" value=""></br></br>
-            <button class="btn btn-primary">FIND TRAINS</button>
+            <button class="btn btn-primary">FIND TRAINS</button></br></br>
         </form>
         <table class="table table-bordered">
             <thead>
@@ -124,7 +124,7 @@
                                    <td>${trainObj.departurestation}</td>
                                    <td>${trainObj.arrivalstation}</td>
                                    <td>${trainObj.duration}</td>
-                                   <td><button type="submit" id="button${index + 1}"> Book </button></td>
+                                   <td><button type="submit" class="btn btn-success" id="button${index + 1}"> Book </button></td>
                                    </tr>
                                    </form>`;
 

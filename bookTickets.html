@@ -43,9 +43,24 @@
                 <h4 id="trainNumber"></h4>
                 <h4 id="trainName"></h4>
                 <form onsubmit="book()">
-                    <label>From</label> <input type="text" name="from" id="from"
-                        placeholder="Enter from station"></br></br>
-                    <label>To</label><input type="text" name="to" id="to" placeholder="Enter to station"></br></br>
+                    <label>From</label> 
+                     <select id="from" name="city" required>
+                        <option value="chennai">Chennai</option>
+                        <option value="trichy">Trichy</option>
+                        <option value="madurai">Madurai</option>
+                        <option value="delhi">Delhi</option>
+                        <option value="Mumbai">Mumbai</option>
+                        <option value="pune">Pune</option>
+                    </select></br>
+                    <label>To</label> 
+                    <select  id="to" name="city" required>
+                        <option value="chennai">Chennai</option>
+                        <option value="trichy">Trichy</option>
+                        <option value="madurai">Madurai</option>
+                        <option value="delhi">Delhi</option>
+                        <option value="Mumbai">Mumbai</option>
+                        <option value="pune">Pune</option>
+                    </select></br> 
                     <label>journey date</label> <input type="date" value="" id="date" required></br></br>
                     <label>choose your class</label> <select id="class" name="class">
                         <option value="sleeper">sleeper class</option>
@@ -85,7 +100,7 @@
             console.log(currentUser);
             let currentUserName = currentUser.name;
             //storing it in single object
-            var booking = { "name": currentUserName, "ticketId": ticketId, "from": from, "to": to, "date": date, "class": journeyclass, "num": passengers };
+            var booking = { "name": currentUserName, "ticketId": ticketId, "from": from, "to": to, "date": date, "class": journeyclass, "num": passengers, "status":"confirmed"};
             console.log(booking);
             //local storage
             var bookserviceObj = new BookService();
