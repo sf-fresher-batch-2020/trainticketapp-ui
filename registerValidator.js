@@ -3,7 +3,7 @@ class RegisterValidator
     validate(name,email,password)
     {
         if(name == ""){
-            throw "This field cannot be empty";
+            throw "Name cannot be empty";
         }
         if(email == ""){
             throw "Email cannot be empty";

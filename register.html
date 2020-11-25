@@ -54,7 +54,7 @@
                         <label>Name</label><input type="text" name="username" placeholder="Enter your name" id="name"
                             autofocus></br>
                         <label>Email ID</label><input type="email" name="email id" placeholder="Enter your mail id"
-                            id="email"></br>
+                            id="email" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$"></br>
                         <label>Password</label><input type="password" name="pass" id="password" required></br>
                         <label>DOB</label><input type="date" value="" id="dob"></br>
                         <label>Gender</label><input type="radio" name="gender" value="m" id="m">male
@@ -67,7 +67,7 @@
                         <button class="btn btn-primary">Register</button></br></br>
                       </form>
                         <p>Already have an account?click here to <a href="login.html">Login</a></p>
-                      <!--  <button>click here <a class="login" href=login.html ></a></button> -->
+                     
                     
             </div>
        <!-- </div> -->
@@ -91,6 +91,7 @@
             }
             var role = document.getElementById("role").value;
             try {
+                //validating service
                 const validationObj = new RegisterValidator();
                 validationObj.validate(name, email, password);
 

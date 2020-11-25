@@ -49,7 +49,8 @@
                 <option value="madurai">Madurai</option>
                 <option value="delhi">Delhi</option>
                 <option value="Mumbai">Mumbai</option>
-                <option value="pune">Pune</option>
+                <option value="Hyderabad">Hyderabad</option>
+                <option value="Bangalore">Bangalore</option>
             </select></br>
             <label for="to">Choose destination station</label>
             <select id="dst-city" name="city" required>
@@ -59,6 +60,8 @@
                 <option value="delhi">Delhi</option>
                 <option value="Mumbai">Mumbai</option>
                 <option value="pune">Pune</option>
+                <option value="Hyderabad">Hyderabad</option>
+                <option value="Bangalore">Bangalore</option>
             </select></br>
             <label>Journey date</label><input type="date" id="date" value=""></br></br>
             <button class="btn btn-primary">FIND TRAINS</button></br></br>
@@ -157,18 +160,6 @@
                 })
 
 
-                /*  for (let trainObj of Queriedtrains) {
-  
-                      let viewBtn = '<button class="btn btn-success"> book tickets </button>'
-                      content += `<tr>
-                                     <td>${trainObj.trainnumber}</td>
-                                     <td>${trainObj.trainname}</td>
-                                     <td>${trainObj.departurestation}</td>
-                                     <td>${trainObj.arrivalstation}</td>
-                                     <td>${viewBtn}</td>
-                                     </tr>`;
-                  }
-                  document.querySelector("#Trainslist").innerHTML = content;*/
             } 
         </script>
 </body>
